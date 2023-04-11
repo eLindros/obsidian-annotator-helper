@@ -27,14 +27,18 @@ export default class MyPlugin extends Plugin {
 			this.app.workspace.on("file-menu", (menu, file) => {
 			  menu.addItem((item) => {
 				item
-				  .setTitle("Print file path 👈")
+				  .setTitle("Erstelle Annotation")
 				  .setIcon("document")
 				  .onClick(async () => {
-					new Notice(file.path);
-				  });
+					await App.vault.create(`Annotations/Annotationen ${file.basename}`, `
+					---
+					annotation-target: ${file.basename}.pdf
+					---
+					`);
+					await App.workspace.getMostRecentLeaf();
 			  });
-			})
-		);
+			});
+	}));
 
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');

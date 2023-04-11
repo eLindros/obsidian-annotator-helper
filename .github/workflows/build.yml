@@ -1,7 +1,10 @@
 name: Node.js CI
 
 on:
-  push: [master]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:

@@ -30,9 +30,10 @@ export default class MyPlugin extends Plugin {
 				  .setTitle("Erstelle Annotation")
 				  .setIcon("document")
 				  .onClick(async () => {
-					await app.vault.create(`Annotations/Annotationen ${file.name}`, `
+					const file_basename = file.name.replace(".pdf", "");
+					await app.vault.create(`Annotations/Annotationen ${file_basename}`, `
 					---
-					annotation-target: ${file.name}.pdf
+					annotation-target: ${file.name}
 					---
 					`);
 					await app.workspace.getMostRecentLeaf();

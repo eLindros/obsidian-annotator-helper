@@ -31,7 +31,7 @@ export default class MyPlugin extends Plugin {
 				  .setIcon("document")
 				  .onClick(async () => {
 					const file_basename = file.name.replace(".pdf", "");
-					await app.vault.create(`Annotations/Annotationen ${file_basename}`, `
+					await app.vault.create(`Annotations/Annotationen ${file_basename}.md`, `
 					---
 					annotation-target: ${file.name}
 					---

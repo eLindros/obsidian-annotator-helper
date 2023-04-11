@@ -21,6 +21,21 @@ export default class MyPlugin extends Plugin {
 			// Called when the user clicks the icon.
 			new Notice('This is a notice!');
 		});
+
+		// Adds context menu entry in the file menu
+		this.registerEvent(
+			this.app.workspace.on("file-menu", (menu, file) => {
+			  menu.addItem((item) => {
+				item
+				  .setTitle("Print file path 👈")
+				  .setIcon("document")
+				  .onClick(async () => {
+					new Notice(file.path);
+				  });
+			  });
+			})
+		);
+
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');
 
